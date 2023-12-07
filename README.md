@@ -21,6 +21,8 @@ All packages recommend building via the [Greengrass Development Kit](https://doc
 pip3 install git+https://github.com/aws-greengrass/aws-greengrass-gdk-cli.git@v1.6.1
 ```
 
+Finally, the AWS CLI must be installed and configured with valid credentials. See [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for more details.
+
 ### Configure Packages
 
 To build each package successfully, locate its `gdk-config.json` and modify the author, version, publish bucket, and publish region. The publish bucket does not need to be a unique name, as the GDK will automatically append information to the bucket name unique to the account.
