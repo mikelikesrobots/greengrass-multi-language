@@ -1,0 +1,26 @@
+---
+RecipeFormatVersion: "2020-01-25"
+ComponentName: "{COMPONENT_NAME}"
+ComponentVersion: "{COMPONENT_VERSION}"
+ComponentDescription: "This Python component publishes the given message over MQTT every second."
+ComponentPublisher: "{COMPONENT_AUTHOR}"
+ComponentConfiguration:
+  DefaultConfiguration:
+    Message: "Hello from Python!"
+    accessControl:
+      aws.greengrass.ipc.mqttproxy:
+        "com.example.PythonMqttHello:mqttproxy:1":
+          policyDescription: "Allows access to publish to all topics."
+          operations:
+            - "aws.greengrass#PublishToIoTCore"
+          resources:
+            - "*"
+Manifests:
+  - Platform:
+      os: all
+    Artifacts:
+      - URI: "s3://BUCKET_NAME/COMPONENT_NAME/COMPONENT_VERSION/python-mqtt-hello.zip"
+        Unarchive: ZIP
+    Lifecycle:
+      Install: "python3 -m pip install --user -r {artifacts:decompressedPath}/python-mqtt-hello/requirements.txt"
+      Run: "python3 -u {artifacts:decompressedPath}/python-mqtt-hello/main.py \"{configuration:/Message}\""

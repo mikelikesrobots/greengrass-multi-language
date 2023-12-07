@@ -1,0 +1,8 @@
+*build/
+build
+.idea/
+**.DS_STORE
+**.DS_Store
+*.iml
+target/
+dependency-reduced-pom.xml
